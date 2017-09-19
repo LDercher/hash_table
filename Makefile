@@ -1,9 +1,9 @@
 STUDENT_ID=l446d901
-LAB_NAME=doubly-linked-list-lab-1
+LAB_NAME=hash-table-lab-3
 GCC=g++
 CFLAGS=-Wall -g -pedantic --std=c++11
 
-FILES=Makefile main.cpp DoubleLL.hpp DoubleLL.cpp util.cpp util.hpp node.hpp node.cpp data.txt
+FILES=Makefile main.cpp hash_table.cpp hash_table.hpp DoubleLL.hpp DoubleLL.cpp util.cpp util.hpp node.hpp node.cpp data.txt
 
 ARCHIVE_FOLDER=$(STUDENT_ID)-$(LAB_NAME)
 

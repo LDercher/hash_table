@@ -9,6 +9,7 @@
 #define hash_table_H
 #include <tuple>
 #include <cstdint>
+#include <math.h>
 
 #include "DoubleLL.hpp"
 
@@ -19,12 +20,15 @@ class hash_table {
 
   private:
 
-  tuple<int,int> m_dims;
+  int size_ind;
 
+  int m_prime_sizes[1000];
 
   DoubleLL** ind;
 
   int m_size;
+
+  int curr_members;
 
   public:
 
@@ -33,7 +37,10 @@ class hash_table {
     * @post none
     * @return SM with given
     */
-    hash_table(tuple<int,int> dims);
+    hash_table();
+
+    void init_prime_sizes();
+
 
     void prettyprint();
 
@@ -54,6 +61,14 @@ class hash_table {
     void add(string str);
 
     int hash(string inp);
+
+    bool searchValue(string str);
+
+    void deleteValue(string str);
+
+
+    void rehash();
+
 
     /**
     * @pre none
