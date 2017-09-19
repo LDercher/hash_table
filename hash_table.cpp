@@ -27,6 +27,21 @@ hash_table::~hash_table(){
 
 }
 
+int hash(string inp)
+{
+
+  int totAscii = 0;
+
+    for(char& c : inp)
+    {
+    totAscii += (int) inp;
+    }
+
+    return totAscii % m_size;
+
+}
+
+
 void hash_table::add(tuple<int,int> pos, int val){
 
   try {
@@ -134,8 +149,6 @@ void hash_table::prettyprint(){
 void hash_table::print()
 {
   node<int>* temp;
-  if(m_orientation_row)
-  {
     for( int i = 0; i < get<0>(m_dims); i++)
     {
       if (ind[i] != nullptr)
@@ -162,37 +175,7 @@ void hash_table::print()
         }
       }
     }
-  }
-  else
-  {
-    for( int i = 0; i < get<1>(m_dims); i++)
-    {
-      if (ind[i] != nullptr)
-      {
-      temp = ind[i]->getFront();
-      }
-      else{
-        temp = nullptr;
-      }
-      for( int j = 0; j < get<0>(m_dims) ; j++)
-      {
-        if( temp == nullptr)
-        {
-            printf("value= %i at ind= (%i,%i) \n\n", 0,i,j);
-        }
-        else
-        {
-          if(j == get<0>(temp->getCoord()))
-          {
-            printf("value= %i at ind= (%i,%i) \n\n", temp->getValue(), get<0>(temp->getCoord()),get<1>(temp->getCoord()));
-            temp = temp->getNext();
-          }
-        }
-      }
-    }
 
-  }
-  prettyprint();
 }
 
 tuple<int,int> hash_table::getDims()

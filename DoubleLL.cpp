@@ -54,23 +54,19 @@ int DoubleLL::getSize(){
   return m_size;
 }
 
-void DoubleLL::incSize(){
 
-	abs(m_size++);
-}
+void DoubleLL::add(int elem, int ind) {
 
-void DoubleLL::add(int elem, int Xcoord, int Ycoord) {
-
-      if ( Ycoord == 0)
+      if ( ind == 0)
       {
 
-      	addFront(elem, Xcoord, Ycoord);
+      	addFront(elem, ind);
 
       }
       else if (Ycoord >= m_size )
       {
 
-	      addBack(elem, Xcoord, Ycoord);
+	      addBack(elem, ind);
 
       }
       else
@@ -90,7 +86,6 @@ void DoubleLL::add(int elem, int Xcoord, int Ycoord) {
 
         new_node->setValue(elem);
 
-        new_node -> setCoord(Xcoord, Ycoord);
 
         if( pos->getPrev() != nullptr)
         {
@@ -192,85 +187,86 @@ void DoubleLL::deleteAll(int elem) {
 
 void DoubleLL::deleteAtInd(int ind)
 {
-  try {
+    try {
 
-    if( ind > m_size || ind < 0 )
+      if( ind > m_size || ind < 0 )
+      {
+
+          throw std::out_of_range ("index out of bounds");
+
+      }
+
+    }
+    catch(std::out_of_range &oor)
     {
 
-        throw std::out_of_range ("index out of bounds");
+        printf("exception found: %s \n",oor.what());
+
+        return;
 
     }
 
-  }
-  catch(std::out_of_range &oor)
-  {
+    if (m_size == 0)
+    {
+      return;
+    }
 
-      printf("exception found: %s \n",oor.what());
+    if(m_size == 1)
+    {
+      delete m_front;
 
+      m_front = nullptr;
+
+      m_back == nullptr;
+
+      m_size--;
       return;
 
-  }
+    }
 
-  if (m_size == 0)
-  {
-    return;
-  }
+    node<int>* temp = m_front;
 
-  if(m_size == 1)
-  {
-    delete m_front;
+    int searchInd = 0;
 
-    m_front = nullptr;
+    if ( ind == 0)
+    {
 
-    m_back == nullptr;
-
-    m_size++;
-
-    return;
-
-  }
-
-  node<int>* temp = m_front;
-
-  int searchInd = 0;
-
-  if ( ind == 0)
-  {
-
-    m_front = m_front->getNext();
-
-    delete temp;
-
-  }
-  else if( ind == (m_size - 1))
-  {
-
-    temp = m_back;
-
-    m_back = m_back->getPrev();
-
-    delete temp;
-
-  }
-  else
-  {
-
-      while ( ind != searchInd )
-      {
-        searchInd++;
-
-        temp = temp->getNext();
-
-      }
-      temp->getPrev()->setNext(temp->getNext());
-
-      temp->getNext()->setPrev(temp->getPrev());
+      m_front = m_front->getNext();
 
       delete temp;
 
-  }
+    }
+    else if( ind == (m_size - 1))
+    {
 
-  m_size--;
+      temp = m_back;
+
+      m_back = m_back->getPrev();
+
+      delete temp;
+
+    }
+    else
+    {
+
+        while ( ind != searchInd )
+        {
+          searchInd++;
+
+          temp = temp->getNext();
+
+        }
+        temp->getPrev()->setNext(temp->getNext());
+
+        temp->getNext()->setPrev(temp->getPrev());
+
+        delete temp;
+
+  	m_size--;
+
+    }
+
+
 
 
 }
@@ -304,16 +300,18 @@ void DoubleLL::addFront(int elem, int x, int y)
 
    m_size++;
 
+}void DoubleLL::incSize(){
+
+	abs(m_size++);
 }
 
-void DoubleLL::addBack(int elem, int x, int y)
+
+void DoubleLL::addBack(int elem, int x)
 {
 
    node<int>* new_node = new node<int>();
 
    new_node->setValue(elem);
-
-   new_node->setCoord(x,y);
 
    if(m_size == 0)
    {
@@ -348,6 +346,10 @@ int DoubleLL::find(int elem) {
      {
           if (temp->getValue() == elem)
           {
+void DoubleLL::incSize(){
+
+	abs(m_size++);
+}
 
               return temp->getValue();
 

@@ -67,8 +67,6 @@ private:
   */
   int getSize();
 
-  void incSize();
-
   /**
    * @pre none
    * @post add and element on a specific position
@@ -76,7 +74,7 @@ private:
    * is not in range of [0, this.size()]
    # @return none
    */
-  void add(int elem, int Xcoord, int Ycoord) ;
+  void add(int elem, int ind) ;
 
   /**
   * @pre none
@@ -112,14 +110,14 @@ private:
   * @post add element to front of the list with value of the input
   * @return none
   */
-  void addFront(int elem, int x, int y);
+  void addFront(int elem, int include);
 
   /**
   * @pre none
   * @post none
   * @return an element to the back of the list with a vlue of the given input
   */
-  void addBack (int elem, int x, int y);
+  void addBack (int elem, int ind);
 
   /**
   * @pre none
