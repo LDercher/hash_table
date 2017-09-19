@@ -51,7 +51,7 @@ class hash_table {
     * replaces value if one already exists.
     * @return size of DLL
     */
-    void add(tuple<int,int> pos, int val);
+    void add(string str);
 
     int hash(string inp);
 
@@ -62,33 +62,6 @@ class hash_table {
     */
     void print();
 
-    /**
-    * @pre none
-    * @post none
-    * @return size of DLL
-    */
-    tuple<int,int> getDims();
-
-    /**
-    * @pre none
-    * @post set_mdims to new value
-    * @return none
-    */
-    void setDims(tuple<int,int> dims);
-
-    /**
-    * @pre none
-    * @post none
-    * @return index array for sparse matrix
-    */
-    DoubleLL** getIndArr();
-
-    /**
-    * @pre none
-    * @post none
-    * @return size of DLL
-    */
-    bool isEqual(hash_table* SM);
 
 
 };

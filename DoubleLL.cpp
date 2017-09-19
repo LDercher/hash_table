@@ -11,8 +11,8 @@ DoubleLL::DoubleLL() {
 }
 
 DoubleLL::~DoubleLL() {
-  node<int>* next;
-	node<int>* curr = m_front;
+  node<std::string>* next;
+	node<std::string>* curr = m_front;
 
   	while (curr != nullptr)
   	{
@@ -26,12 +26,12 @@ DoubleLL::~DoubleLL() {
    }
 }
 
-node<int>* DoubleLL::getFront()
+node<std::string>* DoubleLL::getFront()
 {
   return m_front;
 }
 
-node<int>* DoubleLL::getBack()
+node<std::string>* DoubleLL::getBack()
 {
   return m_back;
 }
@@ -55,36 +55,36 @@ int DoubleLL::getSize(){
 }
 
 
-void DoubleLL::add(int elem, int ind) {
+void DoubleLL::add(string str, int ind) {
 
       if ( ind == 0)
       {
 
-      	addFront(elem, ind);
+      	addFront(str);
 
       }
-      else if (Ycoord >= m_size )
+      else if (ind >= m_size )
       {
 
-	      addBack(elem, ind);
+	      addBack(str);
 
       }
       else
       {
 
-        node<int>* pos = m_back;
+        node<std::string>* pos = m_back;
 
         //loop through DLL to find node at pos
-        for(int i = 0; i < (m_size - 1) - Ycoord; i++)
+        for(int i = 0; i < (m_size - 1) ; i++)
         {
           pos = pos->getPrev();
         }
 
-        node<int>* new_node = new node<int>();
+        node<std::string>* new_node = new node<std::string>();
 
          m_size++;
 
-        new_node->setValue(elem);
+        new_node->setValue(str);
 
 
         if( pos->getPrev() != nullptr)
@@ -107,9 +107,9 @@ void DoubleLL::add(int elem, int ind) {
 
 }
 
-void DoubleLL::deleteAll(int elem) {
+void DoubleLL::deleteAll(string str) {
 
-  node<int>* temp = m_front;
+  node<std::string>* temp = m_front;
 
 
     if (m_size == 0)
@@ -117,23 +117,10 @@ void DoubleLL::deleteAll(int elem) {
       return;
     }
 
-    if(m_size == 1)
-    {
-      delete m_front;
 
-      m_front = nullptr;
-
-      m_back == nullptr;
-
-      m_size--;
-
-      return;
-
-    }
-
-  while(find(elem) != -1)
+  while(find(str) != -1)
   {
-    while(temp->getValue()!= elem)
+    while(temp->getValue()!= str)
     {
 
       temp = temp->getNext();
@@ -165,9 +152,9 @@ void DoubleLL::deleteAll(int elem) {
     }
     else
     {
-      node<int>* temp_prev = temp-> getPrev();
+      node<std::string>* temp_prev = temp-> getPrev();
 
-      node<int>* temp_next = temp->getNext();
+      node<std::string>* temp_next = temp->getNext();
 
       temp_prev->setNext(temp_next);
 
@@ -211,20 +198,8 @@ void DoubleLL::deleteAtInd(int ind)
       return;
     }
 
-    if(m_size == 1)
-    {
-      delete m_front;
 
-      m_front = nullptr;
-
-      m_back == nullptr;
-
-      m_size--;
-      return;
-
-    }
-
-    node<int>* temp = m_front;
+    node<std::string>* temp = m_front;
 
     int searchInd = 0;
 
@@ -271,13 +246,11 @@ void DoubleLL::deleteAtInd(int ind)
 
 }
 
-void DoubleLL::addFront(int elem, int x, int y)
+void DoubleLL::addFront(string str)
 {
-   node<int>* new_node = new node<int>();
+   node<std::string>* new_node = new node<std::string>();
 
-   new_node->setValue(elem);
-
-   new_node->setCoord(x,y);
+   new_node->setValue(str);
 
      if(m_size == 0)
     {
@@ -300,18 +273,14 @@ void DoubleLL::addFront(int elem, int x, int y)
 
    m_size++;
 
-}void DoubleLL::incSize(){
-
-	abs(m_size++);
 }
 
-
-void DoubleLL::addBack(int elem, int x)
+void DoubleLL::addBack(string str)
 {
 
-   node<int>* new_node = new node<int>();
+   node<string>* new_node = new node<std::string>();
 
-   new_node->setValue(elem);
+   new_node->setValue(str);
 
    if(m_size == 0)
    {
@@ -337,21 +306,17 @@ void DoubleLL::addBack(int elem, int x)
 }
 
 
-int DoubleLL::find(int elem) {
-  node<int>* temp = m_front;
+int DoubleLL::find(string str) {
+  node<std::string>* temp = m_front;
 
   int i = 0;
 
      while (temp!= nullptr)
      {
-          if (temp->getValue() == elem)
+          if (temp->getValue() == str)
           {
-void DoubleLL::incSize(){
 
-	abs(m_size++);
-}
-
-              return temp->getValue();
+              return 1;
 
           }
 
@@ -364,40 +329,18 @@ void DoubleLL::incSize(){
 
 }
 
-int DoubleLL::findInd(int elem) {
-  node<int>* temp = m_front;
-
-  int i = 0;
-
-     while (temp!= nullptr)
-     {
-          if (temp->getValue() == elem)
-          {
-
-              return i;
-
-          }
-
-	  i++;
-
-          temp = temp->getNext();
-     }
-
-     return -1;
-
-}
 
 void DoubleLL::print() {
 
   if(m_size > 0){
 
-        node<int>* temp = m_front;
+        node<std::string>* temp = m_front;
 
 	printf("List: ");
 
         for (int i = 0; i < m_size - 1; i++ )
         {
-          printf(" %i ", temp->getValue());
+          printf(" %s ", temp->getValue());
           if(temp->getNext() != nullptr)
           {
           temp = temp->getNext();
@@ -412,27 +355,3 @@ void DoubleLL::print() {
       }
 
      }
-
-
-DoubleLL* DoubleLL::getPositionList( DoubleLL* list ){
-
-    int tempVal;
-
-    DoubleLL* posList = new DoubleLL();
-
-    node<int>* listIter = list->getFront();
-
-    while(listIter != nullptr)
-    {
-
-      tempVal = find(listIter->getValue());
-
-      posList->addBack(tempVal, 0, 0);
-
-      listIter = listIter->getNext();
-
-    }
-
-    return posList;
-
-}
